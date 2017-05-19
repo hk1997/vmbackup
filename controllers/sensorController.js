@@ -77,18 +77,29 @@ module.exports.addSensor=function(req,res)
 			return sendJSONresponse(res,403,{message:'invalid sensor type'});
 		else
 		{
-			var newSensor=new sensor();
+			/*var newSensor=new sensor();
 			newSensor.type=sensorType.type; //foreign key wrt sensor_type
 
 			newSensor.admin=req.payload._id; //logged in user is the admin
-				
+				//update 
 			newSensor.save(function(err,ns)
 			{
 				if(err)
 					return sendJSONresponse(res,500,err);
 				else
 					return sendJSONresponse(res,200,ns);
-			});
+			});*/
+			sensor.update({_id: req.body.sensor_id}, 
+			{$set: {admin: req.payload._id}}, function(err, done)
+			{
+				if(err)
+					return sendJSONresponse(res,401,done);
+				else
+				{
+					
+					return sendJSONresponse(res,200,done);
+				}
+			})
 		}
 	})
 }

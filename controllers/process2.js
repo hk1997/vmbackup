@@ -13,7 +13,8 @@ var path = require('path');
 //require('kue-scheduler') here
 var kue = require('kue-scheduler');
 var Queue = kue.createQueue();
-mongoose.connect("mongodb://localhost/meanAuth");
+//mongoose.connect("mongodb://localhost/meanAuth");
+mongoose.connect('localhost','meanAuth');
 //processing jobs
 Queue.process('schedule', function (job, done) {
   console.log('\nProcessing job with id %s at %s', job.id, new Date());

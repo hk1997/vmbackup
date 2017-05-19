@@ -14,7 +14,7 @@ var ctrlSensor = require('../controllers/sensors');
 var ctrlUser = require('../controllers/users');
 var ctrlAppliance = require('../controllers/appliance');
 var ctrlSensor_new=require('../controllers/sensorController'); //updated sensor schemas and module
-
+var ctrlSensorWrite=require('../controllers/sensorWrite');
 router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/register', ctrlAuth.register);
 router.get('/show',ctrlAuth.show);
@@ -36,4 +36,5 @@ router.get('/listSensorType',ctrlSensor_new.listSensorType);
 router.post('/addSensor',auth,ctrlSensor_new.addSensor);
 router.get('/listSensor',auth,ctrlSensor_new.listSensor);
 router.post('/addSensorDevice',auth,ctrlSensor_new.addSensor_Device);
+router.post('/sensorWrite',auth,ctrlSensorWrite.sensorWrite);
 module.exports = router; 

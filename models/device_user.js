@@ -22,4 +22,4 @@ var device_userSchema = new mongoose.Schema({
   } 
 });
 
-mongoose.model('device_user', device_userSchema);
+module.exports=mongoose.model('device_user', device_userSchema);
