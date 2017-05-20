@@ -6,7 +6,7 @@ var sensor_device=require('../models/sensor_device');
 var device_user = require('../models/device_user');
 var device = require('../models/device');
 var dataStore = mongoose.model('dataSchemaDemo');
-
+var write=require('./device').write;
 /* ---------------------------function for sensor write----------------------*/
 module.exports.sensorWrite=function(req,res)
 {
@@ -24,19 +24,21 @@ module.exports.sensorWrite=function(req,res)
         if(data>sen.threshold_stop) //state=0
 		{
     		/*console.log('i am here 1');*/
-			return sensorWriteUtil(req,res,0); //calling sensorWriteUtil to complete the operation
+			req.data=0;
+            return write(req,res,0); //calling sensorWriteUtil to complete the operation
 		}
 		else if(data<sen.threshold_start) //state=1
 		{
 			console.log('i am here');
-			return sensorWriteUtil(req,res,1);  //calling sensorWriteUtilto complete the write operation
+			req.data=1;
+            return write(req,res,1);  //calling sensorWriteUtilto complete the write operation
 		}
 	})
 }
 
 
 /*------utility function to complete objective of sensorWrite -----------*/
-var sensorWriteUtil=function(req,res,data)
+/*var sensorWriteUtil=function(req,res,data)
 {
     res.header("Access-Control-Allow-Origin", "*");
     var t = data;
@@ -86,3 +88,4 @@ var sensorWriteUtil=function(req,res,data)
     
      
 }
+*/
