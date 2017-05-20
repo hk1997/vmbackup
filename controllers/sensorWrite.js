@@ -24,13 +24,13 @@ module.exports.sensorWrite=function(req,res)
         if(data>sen.threshold_stop) //state=0
 		{
     		/*console.log('i am here 1');*/
-			req.data=0;
+			req.body.data=0;
             return write(req,res,0); //calling sensorWriteUtil to complete the operation
 		}
 		else if(data<sen.threshold_start) //state=1
 		{
 			console.log('i am here');
-			req.data=1;
+			req.body.data=1;
             return write(req,res,1);  //calling sensorWriteUtilto complete the write operation
 		}
 	})
