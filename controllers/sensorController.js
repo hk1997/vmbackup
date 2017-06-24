@@ -89,7 +89,7 @@ module.exports.addSensor=function(req,res)
 				else
 					return sendJSONresponse(res,200,ns);
 			});*/
-			sensor.update({_id: req.body.sensor_id}, 
+			/*sensor.update({_id: req.body.sensor_id}, 
 			{$set: {admin: req.payload._id}}, function(err, done)
 			{
 				if(err)
@@ -99,6 +99,17 @@ module.exports.addSensor=function(req,res)
 					
 					return sendJSONresponse(res,200,done);
 				}
+			})
+			*/
+			var newSensor=new sensor();
+			newSensor.admin=req.payload._id;
+			newSensor.type=req.body.type;
+			newSensor.save(function(err,sense)
+			{
+				if(err)
+					return sendJSONresponse(res,404,err);
+				else
+					return sendJSONresponse(res,200,sense);
 			})
 		}
 	})
