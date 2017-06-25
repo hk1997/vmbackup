@@ -20,7 +20,7 @@ module.exports.sensorWrite=function(req,res)
 		return sendJSONresponse(res,500,err);
 
 		var data=req.body.data;
-	/*	console.log('yhi humai 2');*/
+//	console.log(sen);
         if(data>sen.threshold_stop) //state=0
 		{
     		/*console.log('i am here 1');*/
