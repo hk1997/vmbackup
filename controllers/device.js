@@ -151,8 +151,9 @@ module.exports.addDevice = function(req, res){
 module.exports.write = function(req, res){
     res.header("Access-Control-Allow-Origin", "*");
     var t = req.body.data;
-    console.log('t '+t);
-    console.log(req.payload._id);
+   // console.log('t '+t);
+    //console.log(req.payload._id);
+   // console.log(req.body.device_id+" my device_id");
     device_user.find({user_id:req.payload._id, device_id:req.body.device_id}, function (err, result){
 
             if(err)

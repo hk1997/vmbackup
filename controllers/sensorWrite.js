@@ -10,17 +10,18 @@ var write=require('./device').write; //write apiin device.js
 /* ---------------------------function for sensor write----------------------*/
 module.exports.sensorWrite=function(req,res)
 {
-	/*console.log('yhi humai');*/
-    if(!req.body.sensor_id || !req.body.data)
+	console.log(req.payload._id+" my user id");
+    if(!req.params.sensor_id || !req.params.data)
 		return sendJSONresponse(res,400,{message:'please provide sensor id/data'});
 	
-	sensor_device.findOne({sensor_id:req.body.sensor_id},function(err,sen)
+	sensor_device.findOne({sensor_id:req.params.sensor_id},function(err,sen)
 	{
 		if(err)
 		return sendJSONresponse(res,500,err);
-
-		var data=req.body.data;
-//	console.log(sen);
+		req.body={};//redefining body object for further passing to write
+		var data=req.params.data;
+		req.body.device_id=req.params.device_id;
+	//console.log(req.body.device_id+" yaha hu mai");
         if(data>sen.threshold_stop) //state=0
 		{
     		/*console.log('i am here 1');*/

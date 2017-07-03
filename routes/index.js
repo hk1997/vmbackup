@@ -34,7 +34,7 @@ router.post('/addAppliance', ctrlAppliance.addAppliance);
 router.post('/addSensor',auth,ctrlSensor_new.addSensor);
 router.get('/listSensor',auth,ctrlSensor_new.listSensor);
 router.post('/addSensorDevice',auth,ctrlSensor_new.addSensor_Device);
-router.post('/sensorWrite',auth,ctrlSensorWrite.sensorWrite);
+router.get('/sensorWrite/:device_id/:sensor_id/:data',auth,ctrlSensorWrite.sensorWrite);
 
 //-----------below are routes under the control of admin-------------//
 var ctrlAdmin=require('../controllers/adminRoutes');
