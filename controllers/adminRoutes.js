@@ -23,9 +23,10 @@ module.exports.addSensorType=function(req,res)
 	newSensorType.save(function(err,ns) 
 	{
 		if(err)
-		return sendJSONresponse(res,500,err);
-		else
-		return sendJSONresponse(res,200,{id:ns._id});
+			return sendJSONresponse(res,500,err);
+		
+		else		
+			return sendJSONresponse(res,200,{id:ns._id});
 	})
 
 }
